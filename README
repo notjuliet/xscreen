@@ -1,0 +1,39 @@
+xscreen
+=======
+
+xscreen is a X11 screenshot utility.
+I recommend binding its commands to window manager keys.
+
+Dependencies
+------------
+
+- libX11
+- libpng
+- libwebp
+
+Installation
+------------
+
+$ make
+# make install
+
+Usage
+-----
+
+By default, takes a PNG screenshot of the root window.
+You can capture the focused window with -u.
+You can region select with -s and freeze the screen while capturing it with -z.
+To save to a WebP file, use -w with a parameter to define the quality (1-100).
+A delay can be set in seconds with -d.
+A path and filename can be specified with -f.
+Alternatively, you can print to standard output with -t.
+
+Examples
+--------
+
+# Captures the currently focused window after a delay of 5 seconds
+# then saves it in a lossless WebP file at the location ~/img/
+$ xscreen -u -d 5 -w 100 -f ~/img/test.webp
+
+# Region selection screenshot piped into xclip to save to clipboard
+$ xscreen -s -t | xclip -selection clipboard -t image/png
