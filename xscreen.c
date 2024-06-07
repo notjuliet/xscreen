@@ -434,11 +434,15 @@ main(int argc, char **argv)
 	if (shot.filename == NULL) {
 		shot.filename = make_default_filename(shot.format);
 	} else if (strend(shot.filename, "/")) {
-		char *temp = make_default_filename(shot.format);
-		shot.filename = realloc(shot.filename,
-			strlen(shot.filename) + strlen(temp) + 1);
-		strcat(shot.filename, temp);
-		free(temp);
+		char *tmpdefault = make_default_filename(shot.format);
+		char *tmpalloc = realloc(shot.filename,
+		    strlen(shot.filename) + strlen(tmpdefault) + 1);
+		if (tmpalloc)
+			shot.filename = tmpalloc;
+		else
+			errx(1, "failure during memory reallocation");
+		strcat(shot.filename, tmpdefault);
+		free(tmpdefault);
 	}
 
 	if (shot.window_type == RECTANGLE) {
