@@ -2,7 +2,7 @@ xscreen
 =======
 
 xscreen is a X11 screenshot utility.
-I recommend binding its commands to window manager keys.
+Best used with window manager keybinds.
 
 Dependencies
 ------------
@@ -31,9 +31,9 @@ Alternatively, you can print to standard output with -t.
 Examples
 --------
 
-# Captures the currently focused window after a delay of 5 seconds
-# then saves it in a lossless WebP file at the location ~/img/
+Captures the currently focused window after a delay of 5 seconds
+then saves it in a lossless WebP file at the location ~/img/
 $ xscreen -u -d 5 -w 100 -f ~/img/test.webp
 
-# Region selection screenshot piped into xclip to save to clipboard
+Region selection screenshot piped into xclip to save to clipboard
 $ xscreen -s -t | xclip -selection clipboard -t image/png
