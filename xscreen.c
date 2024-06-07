@@ -403,14 +403,10 @@ save_webp(struct screenshot shot)
 static void
 save_image(struct screenshot shot)
 {
-	if (access(shot.filename, F_OK) == -1) {
-		if (shot.format == PNG)
-			save_png(shot);
-		else if (shot.format == WEBP)
-			save_webp(shot);
-	} else {
-		printf("\"%s\" already exists\n", shot.filename);
-	}
+	if (shot.format == PNG)
+		save_png(shot);
+	else if (shot.format == WEBP)
+		save_webp(shot);
 }
 
 int
@@ -431,18 +427,21 @@ main(int argc, char **argv)
 	shot.filename = NULL;
 
 	check_args(argc, argv, &shot);
-	if (shot.filename == NULL) {
-		shot.filename = make_default_filename(shot.format);
-	} else if (strend(shot.filename, "/")) {
-		char *tmpdefault = make_default_filename(shot.format);
-		char *tmpalloc = realloc(shot.filename,
-		    strlen(shot.filename) + strlen(tmpdefault) + 1);
-		if (tmpalloc)
-			shot.filename = tmpalloc;
-		else
-			errx(1, "failure during memory reallocation");
-		strcat(shot.filename, tmpdefault);
-		free(tmpdefault);
+
+	if (!shot.stdoutput) {
+		if (shot.filename == NULL) {
+			shot.filename = make_default_filename(shot.format);
+		} else if (strend(shot.filename, "/")) {
+			char *tmpdefault = make_default_filename(shot.format);
+			char *tmpalloc = realloc(shot.filename,
+				strlen(shot.filename) + strlen(tmpdefault) + 1);
+			if (tmpalloc)
+				shot.filename = tmpalloc;
+			else
+				errx(1, "failure during memory reallocation");
+			strcat(shot.filename, tmpdefault);
+			free(tmpdefault);
+		}
 	}
 
 	if (shot.window_type == RECTANGLE) {
