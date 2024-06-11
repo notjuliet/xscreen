@@ -7,7 +7,6 @@
 
 #include <png.h>
 #include <webp/encode.h>
-#include <webp/types.h>
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
