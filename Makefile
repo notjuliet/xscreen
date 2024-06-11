@@ -22,9 +22,9 @@ install:
 	cp -f $(BIN) $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/$(BIN)
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < xscreen.1 > $(DESTDIR)$(MANPREFIX)/man1/xscreen.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/xscreen.1
+	sed "s/VERSION/$(VERSION)/g" < $(BIN).1 > $(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
+	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
-		$(DESTDIR)$(MANPREFIX)/man1/xscreen.1
+		$(DESTDIR)$(MANPREFIX)/man1/$(BIN).1
