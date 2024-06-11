@@ -1,0 +1,46 @@
+.TH XSCREEN 1 xscreen\-VERSION
+.SH NAME
+xscreen \- X11 screenshot utility
+.SH SYNOPSIS
+.B xscreen
+.RB [ \-uszt ]
+.RB [ \-d
+.IR seconds ]
+.RB [ \-w
+.IR quality ]
+.RB [ \-f
+.IR location ]
+.SH DESCRIPTION
+By default, takes a screenshot of the root window
+and saves it in a PNG file in the current directory.
+.SH OPTIONS
+.TP
+.B \-u
+captures the focused window.
+.TP
+.B \-s
+selects a rectangle region via user input.
+.TP
+.B \-z
+freezes the screen during rectangle selection.
+.TP
+.B \-t
+prints to standard output.
+.TP
+.BI \-d " seconds"
+delay before taking the screenshot in seconds.
+.TP
+.BI \-w " quality"
+saves to a WebP file, quality ranges from 1 to 100 (lossless).
+.TP
+.BI \-f " location"
+saves to path with optional filename.
+.SH EXAMPLES
+Captures the currently focused window after a delay of 5 seconds
+then saves it in a lossless WebP file at the location \(ti/img/
+.TP
+$ xscreen -u -d 5 -w 100 -f \(ti/img/test.webp
+.TP
+Region selection screenshot piped into xclip to save to clipboard
+.TP
+$ xscreen -s -t | xclip -selection clipboard -t image/png

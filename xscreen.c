@@ -50,25 +50,10 @@ strend(const char *s, const char *t)
 }
 
 static void
-display_help(void)
-{
-	printf("Usage: By default, takes a screenshot of the root window\n "
-	    "      and saves it in a PNG file in the current directory.\n\n"
-	    "    -u           Focused window.\n"
-	    "    -s           Rectangle selection.\n"
-	    "    -z           Freeze display during rectangle selection.\n"
-	    "    -w [quality] Save to a WebP file, quality ranging from 0 to 100 (lossless).\n"
-	    "    -d [delay]   Delay in seconds.\n"
-	    "    -t           Print to standard output.\n"
-	    "    -f [path]    Path + optional filename location.\n");
-	exit(EXIT_SUCCESS);
-}
-
-static void
 check_args(int argc, char **argv, struct screenshot *shot)
 {
 	int opt;
-	while ((opt = getopt(argc, argv, "f:d:w:huszt")) != -1) {
+	while ((opt = getopt(argc, argv, "f:d:w:uszt")) != -1) {
 		switch (opt) {
 		case 'f':
 			shot->filename = malloc(strlen(optarg) + 1);
@@ -80,9 +65,6 @@ check_args(int argc, char **argv, struct screenshot *shot)
 			shot->delay = strtol(optarg, NULL, 0);
 			if (shot->delay < 0)
 				shot->delay = 0;
-			break;
-		case 'h':
-			display_help();
 			break;
 		case 'u':
 			shot->window_type = FOCUSED;
