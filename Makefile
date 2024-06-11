@@ -3,7 +3,8 @@ VERSION = 1.0
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
-CFLAGS = -Os -std=c99 -D_DEFAULT_SOURCE -Wall -Wextra -I/usr/X11R6/include
+CC=cc
+CFLAGS = -Os -std=c2x -D_DEFAULT_SOURCE -Wall -Wextra -I/usr/X11R6/include
 LDFLAGS = -L/usr/X11R6/lib
 LDLIBS = -lX11 -lpng -lwebp
 

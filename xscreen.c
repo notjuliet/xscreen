@@ -1,5 +1,4 @@
 #include <err.h>
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,10 +7,10 @@
 
 #include <png.h>
 #include <webp/encode.h>
+#include <webp/types.h>
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include <webp/types.h>
 
 
 enum {
